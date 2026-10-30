@@ -1,0 +1,25 @@
+const googleSearch = require("./script");
+const dbMock = ["dog.com", "cheesepuff.com", "disney.com", "dogpictures.com"];
+
+describe("googleSearch", () => {
+  it("is a silly test", () => {
+    expect("hello").toBe("hello");
+  });
+  it("is searching google website", () => {
+    const result = googleSearch("dog", dbMock);
+    expect(result).toEqual(["dog.com", "dogpictures.com"]);
+    expect(result.length).toBeLessThanOrEqual(3);
+    expect(googleSearch("dog", dbMock)).toEqual(["dog.com", "dogpictures.com"]);
+  });
+
+  it("work with undefined and null input", () => {
+    expect(googleSearch(undefined, dbMock)).toEqual([]);
+    expect(googleSearch(null, dbMock)).toEqual([]);
+  });
+
+  it("does not return more than 3 matches", () => {
+    const result = googleSearch("com", dbMock);
+    expect(result.length).toEqual(3);
+    expect(result).toEqual(["dog.com", "cheesepuff.com", "disney.com"]);
+  });
+});
