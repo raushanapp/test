@@ -1,7 +1,7 @@
 const { getPoeplePromise, getPeople, url } = require("./script2");
 
 describe("Star Wars API", () => {
-  it("should promise to fetch people from the Star Wars API", () => {
+  it("should promise to fetch people from the Star Wars API", async () => {
     expect.assertions(1);
     return getPoeplePromise(url).then((data) => {
       expect(data.count).toEqual(82);
