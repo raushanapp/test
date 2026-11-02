@@ -1,7 +1,7 @@
 const url = "https://swapi.dev/api/people";
 
-const getPoeplePromise = async (url) => {
-  return fetch(url)
+const getPeoplePromise = async (url, fetchFn = fetch) => {
+  return fetchFn(url)
     .then((response) => response.json())
     .then((data) => {
       return {
@@ -11,9 +11,9 @@ const getPoeplePromise = async (url) => {
     });
 };
 
-const getPeople = async (url) => {
+const getPeople = async (url, fetchFn = fetch) => {
   try {
-    const peoples = await fetch(url);
+    const peoples = await fetchFn(url);
     const data = await peoples.json();
     return {
       count: data.count,
@@ -25,7 +25,7 @@ const getPeople = async (url) => {
 };
 
 module.exports = {
-  getPoeplePromise,
+  getPeoplePromise,
   getPeople,
   url,
 };
